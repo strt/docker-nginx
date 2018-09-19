@@ -1,0 +1,4 @@
+FROM strt/nginx:base
+
+# Add our sites
+COPY ./data/sites/development.conf /etc/nginx/sites-enabled/development.conf

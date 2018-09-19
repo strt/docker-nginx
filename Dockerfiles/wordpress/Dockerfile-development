@@ -1,0 +1,7 @@
+FROM strt/nginx:php-development
+
+# Add PHP settings
+COPY ./data/snippets/wordpress.conf /etc/nginx/snippets/wordpress.conf
+
+# Add our sites
+COPY ./data/sites/development.conf /etc/nginx/sites-enabled/development.conf

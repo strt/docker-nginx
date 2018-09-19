@@ -1,0 +1,23 @@
+FROM nginx:1.15.3-alpine-perl
+
+# Env data
+ENV MY_USER=nginx \
+    MY_GROUP=nginx \
+    MY_HOST=localhost
+
+# Remove default data
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Add all configuration files
+COPY ./data/nginx.conf /etc/nginx/nginx.conf
+COPY ./data/snippets/general.conf /etc/nginx/snippets/general.conf
+
+# Add the entrypoint
+COPY ./data/docker-entrypoint.sh /docker-entrypoint.sh
+
+# Ports
+EXPOSE 80
+EXPOSE 443
+
+# Entrypoint
+ENTRYPOINT ["/docker-entrypoint.sh"]

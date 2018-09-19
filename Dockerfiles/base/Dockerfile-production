@@ -1,0 +1,24 @@
+FROM alpine:3.8 AS alpine-openssl
+
+RUN apk add --update openssl
+
+# Create our Diffie-Hellman keys
+# This is probably shortsighted, shouldn't be included in an image but rather
+# run on final build, look over it.
+RUN openssl dhparam -dsaparam -out /dhparam.pem 2048
+
+FROM strt/nginx:base
+
+# Copy our Diffie-Hellman keys from previous container
+COPY --from=alpine-openssl /dhparam.pem /etc/nginx/dhparam.pem
+
+# Not sure whether this should be local or seperate
+# Create our ACME challenge folder
+# RUN mkdir -p /var/www/_letsencrypt
+
+# Add SSL settings
+COPY ./data/snippets/letsencrypt.conf /etc/nginx/snippets/letsencrypt.conf
+COPY ./data/ssl.conf /etc/nginx/conf.d/ssl.conf
+
+# Add our sites
+COPY ./data/sites/production.conf /etc/nginx/sites-enabled/production.conf

@@ -1,0 +1,7 @@
+FROM strt/nginx:base-production
+
+# Add PHP settings
+COPY ./data/snippets/php_fastcgi.conf /etc/nginx/snippets/php_fastcgi.conf
+
+# Add our sites
+COPY ./data/sites/production.conf /etc/nginx/sites-enabled/production.conf

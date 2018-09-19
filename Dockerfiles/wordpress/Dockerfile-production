@@ -1,0 +1,7 @@
+FROM strt/nginx:php-production
+
+# Add PHP settings
+COPY ./data/snippets/wordpress.conf /etc/nginx/snippets/wordpress.conf
+
+# Add our sites
+COPY ./data/sites/production.conf /etc/nginx/sites-enabled/production.conf
