@@ -13,10 +13,6 @@ To run this project you need:
 * [Docker Engine 18.02.0+](https://www.docker.com/products/docker-engine)
 * [Make](https://www.gnu.org/software/make/)
 
-```
-Give examples
-```
-
 ### Installing
 
 Simply run one of the make commands to build an image.
@@ -76,4 +72,4 @@ See also the list of [contributors](https://github.com/strt/docker-nginx/contrib
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [license](license) file for details
